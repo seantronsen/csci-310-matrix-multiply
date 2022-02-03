@@ -1,0 +1,22 @@
+#!/bin/bash
+#SBATCH --job-name="tronsen_mm_sweep"
+#SBATCH --output="tronsen_mm_sweep.%j.%N.out"
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=128
+#SBATCH --mem=32G
+#SBATCH --account=ccu106
+#SBATCH --export=ALL
+#SBATCH -t 02:30:00
+
+module purge
+module load cpu
+module load slurm
+module load gcc
+module load g++
+module load openmpi
+
+
+#Run the job
+./matrix_multiplication_sweep 1000 4000 500 1 128 1 mm_sweep_f.dat
